@@ -1,4 +1,4 @@
-package com.bikkadit.electronicstroe.dtos;
+package com.bikkadit.electronicstroe.helper;
 
 import lombok.*;
 

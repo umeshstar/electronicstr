@@ -1,13 +1,12 @@
 package com.bikkadit.electronicstroe.controller;
 
-import com.bikkadit.electronicstroe.dtos.ApiResponse;
+import com.bikkadit.electronicstroe.helper.ApiResponse;
 import com.bikkadit.electronicstroe.dtos.UserDto;
 
+import com.bikkadit.electronicstroe.helper.AppConstant;
 import com.bikkadit.electronicstroe.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,14 +15,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
 @Slf4j
 public class UserController {
 
-  //  private Logger logger= LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService userService;
 
@@ -53,7 +50,7 @@ public class UserController {
         userService.deleteUser(userId);
         ApiResponse api= ApiResponse
                 .builder()
-                .message("UserDeleted SuccessFully..")
+                .message(AppConstant.DELETED)
                 .success(true)
                 .build();
         log.info("This is method for delete user request complete");
@@ -74,15 +71,15 @@ public class UserController {
     @GetMapping("/{userId}")
     public ResponseEntity<UserDto> getSingleUsers(@PathVariable String userId){
         log.info("This is request for getsingle user by id request start");
-        UserDto userbyId = this.userService.getUserbyId(userId);
+        UserDto userbyId = this.userService.getUserById(userId);
         log.info("This is request for getsingle user by id request end");
         return new ResponseEntity<>(userbyId,HttpStatus.OK);
 
     }
     @GetMapping("/email/{email}")
-    public ResponseEntity<UserDto> getUserbyEmail( @PathVariable String email) {
+    public ResponseEntity<UserDto> getUserByEmail( @PathVariable String email) {
         log.info("This is request for get user by email request start");
-        UserDto userEmail = userService.getUserbyEmail(email);
+        UserDto userEmail = userService.getUserByEmail(email);
         log.info("This is request for get user by email request start");
         return new ResponseEntity<>(userEmail,HttpStatus.OK);
 
