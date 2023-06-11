@@ -2,6 +2,7 @@ package com.bikkadit.electronicstroe.service.impl;
 
 import com.bikkadit.electronicstroe.dtos.UserDto;
 import com.bikkadit.electronicstroe.entities.User;
+import com.bikkadit.electronicstroe.exception.ResourceNotFoundException;
 import com.bikkadit.electronicstroe.helper.AppConstant;
 import com.bikkadit.electronicstroe.repositories.UserRepository;
 import com.bikkadit.electronicstroe.service.UserService;
@@ -43,7 +44,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto updateUser(UserDto userDto, String userId) {
         log.info("This is updateuser method start of impl");
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException(AppConstant.EXCEPTION_MESSAGE));
+        User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException(AppConstant.EXCEPTION_MESSAGE));
         user.setName(userDto.getName());
        // user.setEmail(userDto.getEmail());
         user.setAbout(userDto.getAbout());
@@ -63,7 +64,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(String userId) {
         log.info("This is deleteuser method start of impl");
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException(AppConstant.EXCEPTION_MESSAGE));
+        User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException(AppConstant.EXCEPTION_MESSAGE));
 //      delete user
         log.info("This is deleteuser method end of impl");
         userRepository.delete(user);
@@ -82,7 +83,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getUserById(String userId) {
         log.info("This is getuserbyid method start of impl");
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException(AppConstant.EXCEPTION_MESSAGE));
+        User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException(AppConstant.EXCEPTION_MESSAGE));
         log.info("This is getuserbyid method end of impl");
         return entityToDto(user);
     }
@@ -90,7 +91,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getUserByEmail(String email) {
         log.info("This is getuserbyemail method start of impl");
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException(AppConstant.EXCEPTION_MESSAGE));
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException(AppConstant.EXCEPTION_MESSAGE));
         log.info("This is getuserbyemail method end of impl");
         return entityToDto(user);
     }
