@@ -76,10 +76,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> getAllUser(int pageNumber, int pageSize ) {
+    public List<UserDto> getAllUser(int pageNumber, int pageSize,String sortBy,String sortDir ) {
         log.info("This is getalluser method start of impl");
 
-        PageRequest pageable= PageRequest.of(pageNumber,pageSize);
+        Sort sort= (sortDir.equalsIgnoreCase("desc"))?(Sort.by(sortBy).descending()):(Sort.by(sortBy).ascending());
+
+        PageRequest pageable= PageRequest.of(pageNumber,pageSize,sort);
 
         Page<User> page = userRepository.findAll(pageable);
         List<User> users = page.getContent();
