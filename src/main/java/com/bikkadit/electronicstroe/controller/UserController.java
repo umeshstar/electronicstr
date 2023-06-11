@@ -58,9 +58,16 @@ public class UserController {
     }
     //getall
     @GetMapping("/")
-    public ResponseEntity<List<UserDto>> getAllUsers(){
+    public ResponseEntity<List<UserDto>> getAllUsers(
+            @RequestParam(value = "pageNumber", defaultValue = AppConstant.PAGE_NUMBER, required = false) Integer pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = AppConstant.PAGE_SIZE, required = false) Integer pageSize
+//            @RequestParam(value = "sortBy", defaultValue = AppConstant.SORT_BY, required = false) String sortBy,
+//            @RequestParam(value = "sortDir", defaultValue = AppConstant.SORT_DIR, required = false) String sortDir
+
+
+    ){
         log.info("This is request for getall user request start");
-        List<UserDto> list = this.userService.getAllUser();
+        List<UserDto> list = this.userService.getAllUser(pageNumber, pageSize);
         log.info("This is method for getall user request complete");
         return new ResponseEntity<>(list,HttpStatus.OK);
 
