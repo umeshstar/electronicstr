@@ -4,8 +4,12 @@ import com.bikkadit.electronicstroe.dtos.UserDto;
 import com.bikkadit.electronicstroe.entities.User;
 import com.bikkadit.electronicstroe.exception.ResourceNotFoundException;
 import com.bikkadit.electronicstroe.helper.AppConstant;
+import com.bikkadit.electronicstroe.helper.PHelper;
+import com.bikkadit.electronicstroe.helper.PageableResponse;
+import com.bikkadit.electronicstroe.helper.PHelper;
 import com.bikkadit.electronicstroe.repositories.UserRepository;
 import com.bikkadit.electronicstroe.service.UserService;
+import lombok.experimental.Helper;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +80,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> getAllUser(int pageNumber, int pageSize,String sortBy,String sortDir ) {
+    public PageableResponse<UserDto> getAllUser(int pageNumber, int pageSize, String sortBy, String sortDir ) {
         log.info("This is getalluser method start of impl");
 
         Sort sort= (sortDir.equalsIgnoreCase("desc"))?(Sort.by(sortBy).descending()):(Sort.by(sortBy).ascending());
@@ -84,10 +88,11 @@ public class UserServiceImpl implements UserService {
         PageRequest pageable= PageRequest.of(pageNumber,pageSize,sort);
 
         Page<User> page = userRepository.findAll(pageable);
-        List<User> users = page.getContent();
-        List<UserDto> dtoList = users.stream().map(user -> entityToDto(user)).collect(Collectors.toList());
+
+        PageableResponse<UserDto> response = PHelper.getPageableResponse(page, UserDto.class);
+
         log.info("This is getalluser method end of impl");
-        return dtoList;
+        return response;
     }
 
     @Override

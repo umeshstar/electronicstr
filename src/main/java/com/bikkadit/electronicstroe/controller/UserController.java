@@ -4,6 +4,7 @@ import com.bikkadit.electronicstroe.helper.ApiResponse;
 import com.bikkadit.electronicstroe.dtos.UserDto;
 
 import com.bikkadit.electronicstroe.helper.AppConstant;
+import com.bikkadit.electronicstroe.helper.PageableResponse;
 import com.bikkadit.electronicstroe.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -58,7 +59,7 @@ public class UserController {
     }
     //getall
     @GetMapping("/")
-    public ResponseEntity<List<UserDto>> getAllUsers(
+    public ResponseEntity<PageableResponse<UserDto>> getAllUsers(
             @RequestParam(value = "pageNumber", defaultValue = AppConstant.PAGE_NUMBER, required = false) Integer pageNumber,
             @RequestParam(value = "pageSize", defaultValue = AppConstant.PAGE_SIZE, required = false) Integer pageSize,
             @RequestParam(value = "sortBy", defaultValue = AppConstant.SORT_BY, required = false) String sortBy,
@@ -67,7 +68,7 @@ public class UserController {
 
     ){
         log.info("This is request for getall user request start");
-        List<UserDto> list = this.userService.getAllUser(pageNumber, pageSize,sortBy,sortDir);
+        PageableResponse<UserDto> list = this.userService.getAllUser(pageNumber, pageSize,sortBy,sortDir);
         log.info("This is method for getall user request complete");
         return new ResponseEntity<>(list,HttpStatus.OK);
 
