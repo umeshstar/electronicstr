@@ -4,17 +4,22 @@ import com.bikkadit.electronicstroe.helper.ApiResponse;
 import com.bikkadit.electronicstroe.dtos.UserDto;
 
 import com.bikkadit.electronicstroe.helper.AppConstant;
+import com.bikkadit.electronicstroe.helper.ImageResponse;
 import com.bikkadit.electronicstroe.helper.PageableResponse;
+import com.bikkadit.electronicstroe.service.FileServices;
 import com.bikkadit.electronicstroe.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -25,6 +30,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private FileServices fileServices;
+
+    @Value("${user.profile.image.path}")
+    private String imageUploadPath;
 
     //create
     @PostMapping("/")
@@ -103,4 +113,26 @@ public class UserController {
 
 
 
+    //upload user image
+    @PostMapping("/image/{userId}")
+    public ResponseEntity<ImageResponse>uploadImage(
+            @RequestParam("userImage")MultipartFile image,
+            @PathVariable String userId            ) throws IOException {
+
+        String imageName = fileServices.uploadFile(image, imageUploadPath);
+
+        UserDto user = userService.getUserById(userId);
+        user.setImageName(imageName);
+        userService.updateUser(user,userId);
+
+        ImageResponse imageResponse= ImageResponse.builder()
+                .imageName(imageName)
+                .success(true)
+                .status(HttpStatus.CREATED)
+                .build();
+        return new ResponseEntity<>(imageResponse,HttpStatus.CREATED);
+    }
+
+
+    //serve user image
 }

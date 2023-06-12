@@ -23,30 +23,46 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ApiResponse> resourceNotFoundExceptionHandler(ResourceNotFoundException ex)
     {
-        log.info("globale Exception handler class method start ");
+        log.info("globale Exceptionhandler class method for Reso.NotfoundExc start ");
         ApiResponse response = ApiResponse.builder()
                 .message(ex.getMessage())
                 .status(HttpStatus.NOT_FOUND)
                 .success(true)
                 .build();
-        log.info("globale Exception handler class method end ");
+        log.info("globale Exceptionhandler class method for Reso.NotfoundExc end ");
 
         return new ResponseEntity(response,HttpStatus.NOT_FOUND);
     }
     //method argumentnot valid exception
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String,Object>> handelMethodArumentNotValidException(MethodArgumentNotValidException ex)
+    public ResponseEntity<Map<String,Object>> handelMethodArgumentNotValidException(MethodArgumentNotValidException ex)
     {
-
+        log.info("globale Exceptionhandler class handelMeth.Arg.NotValidExcp method  start ");
         List<ObjectError> allErrors = ex.getBindingResult().getAllErrors();
-        Map<String,Object> response=new HashMap<>();
+        Map<String, Object> response = new HashMap<>();
         allErrors.stream().forEach(objectError -> {
             String message = objectError.getDefaultMessage();
             String field = ((FieldError) objectError).getField();
-            response.put(field,message);
+            response.put(field, message);
         });
-        return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
+        log.info("globale Exceptionhandler class handelMeth.Arg.NotValidExcp method  end ");
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 
+    }
+    //handel bad api exception
+        @ExceptionHandler(BadApiRequest.class)
+        public ResponseEntity<ApiResponse> handleBadApiRequest(BadApiRequest ex)
+        {
+            log.info("globale Exceptionhandler class handleBadApiRequest method  start ");
+            ApiResponse response = ApiResponse.builder()
+                    .message(ex.getMessage())
+                    .status(HttpStatus.NOT_FOUND)
+                    .success(false)
+                    .build();
+            log.info("globale Exceptionhandler class handleBadApiRequest method end ");
+
+            return new ResponseEntity(response,HttpStatus.BAD_REQUEST);
+        }
     }
 
 
@@ -60,4 +76,4 @@ public class GlobalExceptionHandler {
 
 
 
-}
+
