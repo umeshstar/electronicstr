@@ -1593,3 +1593,225 @@ Caused by: java.io.IOException: Cannot delete C:\Users\DELL\AppData\Local\Temp\t
 [37m2023-06-12T17:55:14.802+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection closer[0;39m] [33mc.z.h.pool.PoolBase[0;39m::[35m?[0;39m: - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@431cd42a: (connection evicted)
 [37m2023-06-12T17:55:14.859+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mSpringApplicationShutdownHook[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
 [37m2023-06-12T17:55:14.859+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mSpringApplicationShutdownHook[0;39m] [33mc.z.h.HikariDataSource[0;39m::[35m?[0;39m: - HikariPool-1 - Shutdown completed.
+[37m2023-06-14T12:35:03.069+0530[0;39m [1;31mERROR[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.s.b.SpringApplication[0;39m::[35m?[0;39m: - Application run failed
+org.springframework.boot.context.config.InvalidConfigDataPropertyException: Property 'spring.profiles.active' imported from location 'class path resource [application-dev.properties]' is invalid in a profile specific resource [origin: class path resource [application-dev.properties] - 25:24]
+	at org.springframework.boot.context.config.InvalidConfigDataPropertyException.lambda$throwOrWarn$1(InvalidConfigDataPropertyException.java:125)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at java.base/java.util.Collections$UnmodifiableCollection.forEach(Collections.java:1092)
+	at org.springframework.boot.context.config.InvalidConfigDataPropertyException.throwOrWarn(InvalidConfigDataPropertyException.java:122)
+	at org.springframework.boot.context.config.ConfigDataEnvironment.checkForInvalidProperties(ConfigDataEnvironment.java:362)
+	at org.springframework.boot.context.config.ConfigDataEnvironment.applyToEnvironment(ConfigDataEnvironment.java:326)
+	at org.springframework.boot.context.config.ConfigDataEnvironment.processAndApply(ConfigDataEnvironment.java:233)
+	at org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor.postProcessEnvironment(ConfigDataEnvironmentPostProcessor.java:102)
+	at org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor.postProcessEnvironment(ConfigDataEnvironmentPostProcessor.java:94)
+	at org.springframework.boot.env.EnvironmentPostProcessorApplicationListener.onApplicationEnvironmentPreparedEvent(EnvironmentPostProcessorApplicationListener.java:102)
+	at org.springframework.boot.env.EnvironmentPostProcessorApplicationListener.onApplicationEvent(EnvironmentPostProcessorApplicationListener.java:87)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:131)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:85)
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$environmentPrepared$2(SpringApplicationRunListeners.java:66)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:120)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:114)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:65)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.bikkadit.electronicstroe.ElectronicstoreApplication.main(ElectronicstoreApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+[37m2023-06-14T12:36:27.793+0530[0;39m [1;31mERROR[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.s.b.SpringApplication[0;39m::[35m?[0;39m: - Application run failed
+org.springframework.boot.context.config.InvalidConfigDataPropertyException: Property 'spring.profiles.active' imported from location 'class path resource [application-dev.properties]' is invalid in a profile specific resource [origin: class path resource [application-dev.properties] - 25:24]
+	at org.springframework.boot.context.config.InvalidConfigDataPropertyException.lambda$throwOrWarn$1(InvalidConfigDataPropertyException.java:125)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at java.base/java.util.Collections$UnmodifiableCollection.forEach(Collections.java:1092)
+	at org.springframework.boot.context.config.InvalidConfigDataPropertyException.throwOrWarn(InvalidConfigDataPropertyException.java:122)
+	at org.springframework.boot.context.config.ConfigDataEnvironment.checkForInvalidProperties(ConfigDataEnvironment.java:362)
+	at org.springframework.boot.context.config.ConfigDataEnvironment.applyToEnvironment(ConfigDataEnvironment.java:326)
+	at org.springframework.boot.context.config.ConfigDataEnvironment.processAndApply(ConfigDataEnvironment.java:233)
+	at org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor.postProcessEnvironment(ConfigDataEnvironmentPostProcessor.java:102)
+	at org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor.postProcessEnvironment(ConfigDataEnvironmentPostProcessor.java:94)
+	at org.springframework.boot.env.EnvironmentPostProcessorApplicationListener.onApplicationEnvironmentPreparedEvent(EnvironmentPostProcessorApplicationListener.java:102)
+	at org.springframework.boot.env.EnvironmentPostProcessorApplicationListener.onApplicationEvent(EnvironmentPostProcessorApplicationListener.java:87)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:131)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:85)
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$environmentPrepared$2(SpringApplicationRunListeners.java:66)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:120)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:114)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:65)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.bikkadit.electronicstroe.ElectronicstoreApplication.main(ElectronicstoreApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+[37m2023-06-14T12:40:36.994+0530[0;39m [1;31mERROR[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.s.b.SpringApplication[0;39m::[35m?[0;39m: - Application run failed
+org.springframework.boot.context.config.InvalidConfigDataPropertyException: Property 'spring.profiles.active' imported from location 'class path resource [application-dev.properties]' is invalid in a profile specific resource [origin: class path resource [application-dev.properties] - 4:24]
+	at org.springframework.boot.context.config.InvalidConfigDataPropertyException.lambda$throwOrWarn$1(InvalidConfigDataPropertyException.java:125)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at java.base/java.util.Collections$UnmodifiableCollection.forEach(Collections.java:1092)
+	at org.springframework.boot.context.config.InvalidConfigDataPropertyException.throwOrWarn(InvalidConfigDataPropertyException.java:122)
+	at org.springframework.boot.context.config.ConfigDataEnvironment.checkForInvalidProperties(ConfigDataEnvironment.java:362)
+	at org.springframework.boot.context.config.ConfigDataEnvironment.applyToEnvironment(ConfigDataEnvironment.java:326)
+	at org.springframework.boot.context.config.ConfigDataEnvironment.processAndApply(ConfigDataEnvironment.java:233)
+	at org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor.postProcessEnvironment(ConfigDataEnvironmentPostProcessor.java:102)
+	at org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor.postProcessEnvironment(ConfigDataEnvironmentPostProcessor.java:94)
+	at org.springframework.boot.env.EnvironmentPostProcessorApplicationListener.onApplicationEnvironmentPreparedEvent(EnvironmentPostProcessorApplicationListener.java:102)
+	at org.springframework.boot.env.EnvironmentPostProcessorApplicationListener.onApplicationEvent(EnvironmentPostProcessorApplicationListener.java:87)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:131)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:85)
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$environmentPrepared$2(SpringApplicationRunListeners.java:66)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:120)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:114)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:65)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.bikkadit.electronicstroe.ElectronicstoreApplication.main(ElectronicstoreApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+[37m2023-06-14T12:41:33.707+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.b.e.ElectronicstoreApplication[0;39m::[35m?[0;39m: - Starting ElectronicstoreApplication using Java 17.0.4.1 on DESKTOP-R7HPKQL with PID 3988 (C:\Users\DELL\Desktop\dpr2\electronicstore\target\classes started by DELL in C:\Users\DELL\Desktop\dpr2\electronicstore)
+[37m2023-06-14T12:41:33.720+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.b.e.ElectronicstoreApplication[0;39m::[35m?[0;39m: - Running with Spring Boot v2.7.10, Spring v5.3.26
+[37m2023-06-14T12:41:33.729+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.b.e.ElectronicstoreApplication[0;39m::[35m?[0;39m: - The following 1 profile is active: "dev"
+[37m2023-06-14T12:41:33.735+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mbackground-preinit[0;39m] [33mo.h.v.i.util.Version[0;39m::[35m?[0;39m: - HV000001: Hibernate Validator 6.2.5.Final
+[37m2023-06-14T12:41:33.972+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.s.b.d.e.DevToolsPropertyDefaultsPostProcessor[0;39m::[35m?[0;39m: - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[37m2023-06-14T12:41:33.972+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.s.b.d.e.DevToolsPropertyDefaultsPostProcessor[0;39m::[35m?[0;39m: - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[37m2023-06-14T12:41:37.338+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m::[35m?[0;39m: - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[37m2023-06-14T12:41:37.517+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m::[35m?[0;39m: - Finished Spring Data repository scanning in 144 ms. Found 1 JPA repository interfaces.
+[37m2023-06-14T12:41:39.920+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.s.b.w.e.t.TomcatWebServer[0;39m::[35m?[0;39m: - Tomcat initialized with port(s): 9090 (http)
+[37m2023-06-14T12:41:39.960+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.a.c.h.Http11NioProtocol[0;39m::[35m?[0;39m: - Initializing ProtocolHandler ["http-nio-9090"]
+[37m2023-06-14T12:41:39.962+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.a.c.c.StandardService[0;39m::[35m?[0;39m: - Starting service [Tomcat]
+[37m2023-06-14T12:41:39.962+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.a.c.c.StandardEngine[0;39m::[35m?[0;39m: - Starting Servlet engine: [Apache Tomcat/9.0.73]
+[37m2023-06-14T12:41:40.302+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.a.c.c.C.[.[.[/][0;39m::[35m?[0;39m: - Initializing Spring embedded WebApplicationContext
+[37m2023-06-14T12:41:40.303+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.s.b.w.s.c.ServletWebServerApplicationContext[0;39m::[35m?[0;39m: - Root WebApplicationContext: initialization completed in 6314 ms
+[37m2023-06-14T12:41:40.516+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - Driver class com.mysql.cj.jdbc.Driver found in Thread context class loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@4ecf79f6
+[37m2023-06-14T12:41:41.188+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.h.j.i.u.LogHelper[0;39m::[35m?[0;39m: - HHH000204: Processing PersistenceUnitInfo [name: default]
+[37m2023-06-14T12:41:41.387+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.hibernate.Version[0;39m::[35m?[0;39m: - HHH000412: Hibernate ORM core version 5.6.15.Final
+[37m2023-06-14T12:41:41.910+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.h.a.common.Version[0;39m::[35m?[0;39m: - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[37m2023-06-14T12:41:42.323+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - HikariPool-1 - configuration:
+[37m2023-06-14T12:41:42.326+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - allowPoolSuspension................................false
+[37m2023-06-14T12:41:42.327+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - autoCommit................................true
+[37m2023-06-14T12:41:42.327+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - catalog................................none
+[37m2023-06-14T12:41:42.327+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - connectionInitSql................................none
+[37m2023-06-14T12:41:42.327+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - connectionTestQuery................................none
+[37m2023-06-14T12:41:42.327+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - connectionTimeout................................30000
+[37m2023-06-14T12:41:42.331+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - dataSource................................none
+[37m2023-06-14T12:41:42.332+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - dataSourceClassName................................none
+[37m2023-06-14T12:41:42.332+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - dataSourceJNDI................................none
+[37m2023-06-14T12:41:42.336+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - dataSourceProperties................................{password=<masked>}
+[37m2023-06-14T12:41:42.337+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - driverClassName................................"com.mysql.cj.jdbc.Driver"
+[37m2023-06-14T12:41:42.337+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - exceptionOverrideClassName................................none
+[37m2023-06-14T12:41:42.337+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - healthCheckProperties................................{}
+[37m2023-06-14T12:41:42.337+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - healthCheckRegistry................................none
+[37m2023-06-14T12:41:42.339+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - idleTimeout................................600000
+[37m2023-06-14T12:41:42.339+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - initializationFailTimeout................................1
+[37m2023-06-14T12:41:42.340+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - isolateInternalQueries................................false
+[37m2023-06-14T12:41:42.340+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - jdbcUrl................................jdbc:mysql://localhost:3306/electronic_store
+[37m2023-06-14T12:41:42.342+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - keepaliveTime................................0
+[37m2023-06-14T12:41:42.342+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - leakDetectionThreshold................................0
+[37m2023-06-14T12:41:42.343+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - maxLifetime................................1800000
+[37m2023-06-14T12:41:42.343+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - maximumPoolSize................................10
+[37m2023-06-14T12:41:42.343+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - metricRegistry................................none
+[37m2023-06-14T12:41:42.343+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - metricsTrackerFactory................................none
+[37m2023-06-14T12:41:42.343+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - minimumIdle................................10
+[37m2023-06-14T12:41:42.343+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - password................................<masked>
+[37m2023-06-14T12:41:42.343+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - poolName................................"HikariPool-1"
+[37m2023-06-14T12:41:42.343+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - readOnly................................false
+[37m2023-06-14T12:41:42.344+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - registerMbeans................................false
+[37m2023-06-14T12:41:42.344+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - scheduledExecutor................................none
+[37m2023-06-14T12:41:42.344+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - schema................................none
+[37m2023-06-14T12:41:42.344+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - threadFactory................................internal
+[37m2023-06-14T12:41:42.344+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - transactionIsolation................................default
+[37m2023-06-14T12:41:42.344+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - username................................"root"
+[37m2023-06-14T12:41:42.344+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariConfig[0;39m::[35m?[0;39m: - validationTimeout................................5000
+[37m2023-06-14T12:41:42.344+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariDataSource[0;39m::[35m?[0;39m: - HikariPool-1 - Starting...
+[37m2023-06-14T12:41:50.659+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@cb337bd
+[37m2023-06-14T12:41:50.665+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.z.h.HikariDataSource[0;39m::[35m?[0;39m: - HikariPool-1 - Start completed.
+[37m2023-06-14T12:41:50.779+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 housekeeper[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - Pool stats (total=1, active=1, idle=0, waiting=0)
+[37m2023-06-14T12:41:50.851+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.h.dialect.Dialect[0;39m::[35m?[0;39m: - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[37m2023-06-14T12:41:50.892+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection adder[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2816b43
+[37m2023-06-14T12:41:51.000+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection adder[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@62ae940c
+[37m2023-06-14T12:41:51.072+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection adder[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7a04bed6
+[37m2023-06-14T12:41:51.153+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection adder[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@66e08a0b
+[37m2023-06-14T12:41:51.253+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection adder[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@62f19f29
+[37m2023-06-14T12:41:51.329+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection adder[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@331f7a65
+[37m2023-06-14T12:41:51.394+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection adder[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@72bd0e15
+[37m2023-06-14T12:41:51.478+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection adder[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2a917255
+[37m2023-06-14T12:41:51.540+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection adder[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@46b23a72
+[37m2023-06-14T12:41:51.540+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection adder[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
+[37m2023-06-14T12:41:54.674+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.h.e.t.j.p.i.JtaPlatformInitiator[0;39m::[35m?[0;39m: - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[37m2023-06-14T12:41:54.720+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.s.o.j.LocalContainerEntityManagerFactoryBean[0;39m::[35m?[0;39m: - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[37m2023-06-14T12:41:55.947+0530[0;39m [31mWARN [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration[0;39m::[35m?[0;39m: - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[37m2023-06-14T12:41:56.827+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.s.b.d.a.OptionalLiveReloadServer[0;39m::[35m?[0;39m: - LiveReload server is running on port 35729
+[37m2023-06-14T12:41:56.994+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.s.b.w.e.t.TomcatWebServer[0;39m::[35m?[0;39m: - Tomcat started on port(s): 9090 (http) with context path ''
+[37m2023-06-14T12:41:57.014+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mc.b.e.ElectronicstoreApplication[0;39m::[35m?[0;39m: - Started ElectronicstoreApplication in 25.595 seconds (JVM running for 27.356)
+[37m2023-06-14T12:41:57.076+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mSpringApplicationShutdownHook[0;39m] [33mo.s.o.j.LocalContainerEntityManagerFactoryBean[0;39m::[35m?[0;39m: - Closing JPA EntityManagerFactory for persistence unit 'default'
+[37m2023-06-14T12:41:57.082+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mSpringApplicationShutdownHook[0;39m] [33mc.z.h.HikariDataSource[0;39m::[35m?[0;39m: - HikariPool-1 - Shutdown initiated...
+[37m2023-06-14T12:41:57.082+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mSpringApplicationShutdownHook[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+[37m2023-06-14T12:41:57.087+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection closer[0;39m] [33mc.z.h.pool.PoolBase[0;39m::[35m?[0;39m: - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@cb337bd: (connection evicted)
+[37m2023-06-14T12:41:57.125+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection closer[0;39m] [33mc.z.h.pool.PoolBase[0;39m::[35m?[0;39m: - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@2816b43: (connection evicted)
+[37m2023-06-14T12:41:57.150+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection closer[0;39m] [33mc.z.h.pool.PoolBase[0;39m::[35m?[0;39m: - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@62ae940c: (connection evicted)
+[37m2023-06-14T12:41:57.151+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection closer[0;39m] [33mc.z.h.pool.PoolBase[0;39m::[35m?[0;39m: - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@7a04bed6: (connection evicted)
+[37m2023-06-14T12:41:57.153+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection closer[0;39m] [33mc.z.h.pool.PoolBase[0;39m::[35m?[0;39m: - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@66e08a0b: (connection evicted)
+[37m2023-06-14T12:41:57.156+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection closer[0;39m] [33mc.z.h.pool.PoolBase[0;39m::[35m?[0;39m: - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@62f19f29: (connection evicted)
+[37m2023-06-14T12:41:57.157+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection closer[0;39m] [33mc.z.h.pool.PoolBase[0;39m::[35m?[0;39m: - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@331f7a65: (connection evicted)
+[37m2023-06-14T12:41:57.158+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection closer[0;39m] [33mc.z.h.pool.PoolBase[0;39m::[35m?[0;39m: - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@72bd0e15: (connection evicted)
+[37m2023-06-14T12:41:57.160+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection closer[0;39m] [33mc.z.h.pool.PoolBase[0;39m::[35m?[0;39m: - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@2a917255: (connection evicted)
+[37m2023-06-14T12:41:57.161+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mHikariPool-1 connection closer[0;39m] [33mc.z.h.pool.PoolBase[0;39m::[35m?[0;39m: - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@46b23a72: (connection evicted)
+[37m2023-06-14T12:41:57.163+0530[0;39m [39mDEBUG[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mSpringApplicationShutdownHook[0;39m] [33mc.z.h.p.HikariPool[0;39m::[35m?[0;39m: - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+[37m2023-06-14T12:41:57.163+0530[0;39m [34mINFO [0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mSpringApplicationShutdownHook[0;39m] [33mc.z.h.HikariDataSource[0;39m::[35m?[0;39m: - HikariPool-1 - Shutdown completed.
+[37m2023-06-14T12:42:56.315+0530[0;39m [1;31mERROR[0;39m [[36mtraceId: [0;39m] [[36msourceIp: [0;39m] [[36muserId: [0;39m] [[32mrestartedMain[0;39m] [33mo.s.b.SpringApplication[0;39m::[35m?[0;39m: - Application run failed
+org.springframework.boot.context.config.InvalidConfigDataPropertyException: Property 'spring.profiles.active' imported from location 'class path resource [application-qa.properties]' is invalid in a profile specific resource [origin: class path resource [application-qa.properties] - 2:24]
+	at org.springframework.boot.context.config.InvalidConfigDataPropertyException.lambda$throwOrWarn$1(InvalidConfigDataPropertyException.java:125)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at java.base/java.util.Collections$UnmodifiableCollection.forEach(Collections.java:1092)
+	at org.springframework.boot.context.config.InvalidConfigDataPropertyException.throwOrWarn(InvalidConfigDataPropertyException.java:122)
+	at org.springframework.boot.context.config.ConfigDataEnvironment.checkForInvalidProperties(ConfigDataEnvironment.java:362)
+	at org.springframework.boot.context.config.ConfigDataEnvironment.applyToEnvironment(ConfigDataEnvironment.java:326)
+	at org.springframework.boot.context.config.ConfigDataEnvironment.processAndApply(ConfigDataEnvironment.java:233)
+	at org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor.postProcessEnvironment(ConfigDataEnvironmentPostProcessor.java:102)
+	at org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor.postProcessEnvironment(ConfigDataEnvironmentPostProcessor.java:94)
+	at org.springframework.boot.env.EnvironmentPostProcessorApplicationListener.onApplicationEnvironmentPreparedEvent(EnvironmentPostProcessorApplicationListener.java:102)
+	at org.springframework.boot.env.EnvironmentPostProcessorApplicationListener.onApplicationEvent(EnvironmentPostProcessorApplicationListener.java:87)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:131)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:85)
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$environmentPrepared$2(SpringApplicationRunListeners.java:66)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:120)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:114)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:65)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.bikkadit.electronicstroe.ElectronicstoreApplication.main(ElectronicstoreApplication.java:10)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)

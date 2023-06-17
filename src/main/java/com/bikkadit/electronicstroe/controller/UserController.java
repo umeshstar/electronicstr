@@ -53,9 +53,9 @@ public class UserController {
     }
     //update
     @PutMapping("/{userId}")
-    public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto,@PathVariable String useraId){
-        log.info("This is method for update user request start");
-        UserDto updatedUser = this.userService.updateUser(userDto, useraId);
+    public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto,@PathVariable String userId){
+        log.info("This is method for update user request start" );
+        UserDto updatedUser = this.userService.updateUser(userDto, userId);
         log.info("This is method for update user request complete");
         return  ResponseEntity.ok(updatedUser);
     }

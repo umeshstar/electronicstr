@@ -13,6 +13,7 @@ import lombok.experimental.Helper;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -20,9 +21,16 @@ import org.springframework.stereotype.Service;
 
 
 import java.awt.print.Pageable;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
+
 
 @Service
 @Slf4j
@@ -31,6 +39,10 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Autowired
     private ModelMapper mapper;
+
+    @Value("${user.profile.image.path}")
+    private String imagePath;
+
     @Override
     public UserDto createUser(UserDto userDto) {
         log.info("This is createuser method start of impl");
@@ -71,10 +83,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String userId) {
-        log.info("This is deleteuser method start of impl");
+        log.info("This is delete user method start of impl");
         User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException(AppConstant.EXCEPTION_MESSAGE));
+
+        //delete user image
+                        //  image/user/a
+        String fullPath = imagePath + user.getImageName();
+      try{
+          Path path1 = Paths.get(fullPath);
+          Files.delete(path1);
+      } catch (NoSuchFileException ex){
+
+      }catch (IOException e){
+          throw new RuntimeException(e);      }
+
 //      delete user
-        log.info("This is deleteuser method end of impl");
+        log.info("This is delete user method end of impl");
         userRepository.delete(user);
 
     }
@@ -97,9 +121,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUserById(String userId) {
-        log.info("This is getuserbyid method start of impl");
+        log.info("This is getuserbyid method start of impl",userId);
         User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException(AppConstant.EXCEPTION_MESSAGE));
-        log.info("This is getuserbyid method end of impl");
+        log.info("This is getuserbyid method end of impl",userId);
         return entityToDto(user);
     }
 

@@ -2,10 +2,7 @@ package com.bikkadit.electronicstroe.dtos;
 
 import com.bikkadit.electronicstroe.validate.ImageNameValid;
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -31,7 +28,7 @@ public class UserDto {
     //(?=.*[0-9]) represents a digit must occur at least once.
     //(?=.*[a-z]) represents a lower case alphabet must occur at least once.
     @NotBlank(message = "password is required")
-   // @Pattern(regexp = "[0-9][a-z]{5}",message = "invalid password please fill min-5 char with number and alphabet")
+    @Pattern(regexp = "^[a-z0-9]{5}",message = "invalid password please fill min-5 char with number and alphabet")
     private String password;
 
 
