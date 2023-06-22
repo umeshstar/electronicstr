@@ -1,7 +1,10 @@
 package com.bikkadit.electronicstroe.service;
 
 import com.bikkadit.electronicstroe.dtos.CategoryDto;
+import com.bikkadit.electronicstroe.dtos.UserDto;
 import com.bikkadit.electronicstroe.helper.PageableResponse;
+
+import java.util.List;
 
 public interface CategoryService {
     //create
@@ -19,5 +22,5 @@ public interface CategoryService {
     void delete(String categoryId);
 
     //Search
-
+    List<CategoryDto> searchCategory(String keyword);
 }

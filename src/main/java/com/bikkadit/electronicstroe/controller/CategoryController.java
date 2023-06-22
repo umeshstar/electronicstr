@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {
@@ -63,4 +65,9 @@ public class CategoryController {
 
     }
 
+    public ResponseEntity<List<CategoryDto>>searchCategory(@RequestParam String keyword){
+        List<CategoryDto> categoryDtos = categoryService.searchCategory(keyword);
+        return new ResponseEntity<>(categoryDtos,HttpStatus.OK);
+
+    }
 }

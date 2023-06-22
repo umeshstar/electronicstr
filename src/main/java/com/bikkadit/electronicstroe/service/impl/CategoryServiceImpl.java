@@ -17,6 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 
@@ -75,9 +76,17 @@ public class CategoryServiceImpl implements CategoryService {
         return pageableResponse;
     }
 
+
     @Override
     public void delete(String categoryId) {
         Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("category not found exception"));
         categoryRepository.delete(category);
+    }
+
+    @Override
+    public List<CategoryDto> searchCategory(String keyword) {
+        List<Category> byNameContaining = categoryRepository.findByNameContaining(keyword);
+        List<CategoryDto> collect = byNameContaining.stream().map(l -> new ModelMapper().map(byNameContaining, CategoryDto.class)).collect(Collectors.toList());
+        return collect;
     }
 }
