@@ -9,18 +9,20 @@ import javax.persistence.Entity;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+
 @Builder
 
 public class CategoryDto {
 
     @Column(name="id")
-    private String CategoryId;
-    @Column(name = "C_title",length = 60,nullable = false)
-    private String CategoryTitle;
-    @Column(name = "C_description",length = 100)
-    private String CategoryDescription;
+    private String categoryId;
 
-    private String CategoryImage;
+    @Column(name = "C_title",length = 60,nullable = false)
+    private String categoryTitle;
+
+    @Column(name = "C_description",length = 100)
+    private String categoryDescription;
+
+    private String categoryImage;
 
 }

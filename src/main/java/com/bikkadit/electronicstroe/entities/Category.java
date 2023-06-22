@@ -18,13 +18,13 @@ public class Category {
 
     @Id
     @Column(name="id")
-    private String CategoryId;
+    private String categoryId;
     @Column(name = "C_title",length = 60,nullable = false)
-    private String CategoryTitle;
+    private String categoryTitle;
     @Column(name = "C_description",length = 100)
-    private String CategoryDescription;
+    private String categoryDescription;
 
-    private String CategoryImage;
+    private String categoryImage;
 
 
 
