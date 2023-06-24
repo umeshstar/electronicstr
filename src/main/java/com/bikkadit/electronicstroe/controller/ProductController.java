@@ -66,7 +66,7 @@ public class ProductController {
     public ResponseEntity<PageableResponse<ProductDto>> getAllProduct(
             @RequestParam(value = "pageNumber", defaultValue = AppConstant.PAGE_NUMBER, required = false) Integer pageNumber,
             @RequestParam(value = "pageSize", defaultValue = AppConstant.PAGE_SIZE, required = false) Integer pageSize,
-            @RequestParam(value = "sortBy", defaultValue = "categoryTitle", required = false) String sortBy,
+            @RequestParam(value = "sortBy", defaultValue = "title", required = false) String sortBy,
             @RequestParam(value = "sortDir", defaultValue = AppConstant.SORT_DIR, required = false) String sortDir
     ){
 
@@ -79,7 +79,7 @@ public class ProductController {
     public ResponseEntity<PageableResponse<ProductDto>> getAllLive(
             @RequestParam(value = "pageNumber", defaultValue = AppConstant.PAGE_NUMBER, required = false) Integer pageNumber,
             @RequestParam(value = "pageSize", defaultValue = AppConstant.PAGE_SIZE, required = false) Integer pageSize,
-            @RequestParam(value = "sortBy", defaultValue = "categoryTitle", required = false) String sortBy,
+            @RequestParam(value = "sortBy", defaultValue = "title", required = false) String sortBy,
             @RequestParam(value = "sortDir", defaultValue = AppConstant.SORT_DIR, required = false) String sortDir
     ){
 
@@ -93,7 +93,7 @@ public class ProductController {
             @PathVariable String query,
             @RequestParam(value = "pageNumber", defaultValue = AppConstant.PAGE_NUMBER, required = false) Integer pageNumber,
             @RequestParam(value = "pageSize", defaultValue = AppConstant.PAGE_SIZE, required = false) Integer pageSize,
-            @RequestParam(value = "sortBy", defaultValue = "categoryTitle", required = false) String sortBy,
+            @RequestParam(value = "sortBy", defaultValue = "title", required = false) String sortBy,
             @RequestParam(value = "sortDir", defaultValue = AppConstant.SORT_DIR, required = false) String sortDir
     ){
 
