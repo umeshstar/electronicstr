@@ -10,16 +10,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
+
+
     //Create
     @PostMapping()
-    public ResponseEntity<CategoryDto>createCategory(@RequestBody CategoryDto categoryDto){
+    public ResponseEntity<CategoryDto>createCategory(@Valid @RequestBody CategoryDto categoryDto){
         CategoryDto categoryDto1 = categoryService.create(categoryDto);
         return new ResponseEntity<>(categoryDto1, HttpStatus.CREATED);
 
@@ -54,7 +59,8 @@ public class CategoryController {
     }
 
     //delete
-    public ResponseEntity<ApiResponse>deleteCategory(@RequestBody String categoryId){
+    @DeleteMapping("/{categoryId}")
+    public ResponseEntity<ApiResponse>deleteCategory(@PathVariable String categoryId){
         categoryService.delete(categoryId);
         ApiResponse response = ApiResponse.builder()
                 .message("Category Deleted Succesfully!!")
@@ -65,9 +71,10 @@ public class CategoryController {
 
     }
 
-    public ResponseEntity<List<CategoryDto>>searchCategory(@RequestParam String keyword){
+    @GetMapping("/{keyword}")
+    public ResponseEntity<List<CategoryDto>>searchCategory(@PathVariable String keyword){
         List<CategoryDto> categoryDtos = categoryService.searchCategory(keyword);
-        return new ResponseEntity<>(categoryDtos,HttpStatus.OK);
+        return new ResponseEntity<List<CategoryDto>>(categoryDtos,HttpStatus.OK);
 
     }
 }

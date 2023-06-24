@@ -7,7 +7,6 @@ import com.bikkadit.electronicstroe.helper.PHelper;
 import com.bikkadit.electronicstroe.helper.PageableResponse;
 import com.bikkadit.electronicstroe.repositories.CategoryRepository;
 import com.bikkadit.electronicstroe.service.CategoryService;
-import lombok.experimental.Helper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +31,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDto create(CategoryDto categoryDto) {
+        //creating cat..Id randomly
+        String categoryId = UUID.randomUUID().toString();
+        categoryDto.setCategoryId(categoryId);
+
         //it is used to convert dto to entity
         Category category = modelMapper.map(categoryDto, Category.class);
 
@@ -85,8 +89,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryDto> searchCategory(String keyword) {
-        List<Category> byNameContaining = categoryRepository.findByNameContaining(keyword);
-        List<CategoryDto> collect = byNameContaining.stream().map(l -> new ModelMapper().map(byNameContaining, CategoryDto.class)).collect(Collectors.toList());
-        return collect;
+        List<Category> titleContaining = categoryRepository.findBycategoryTitleContaining(keyword);
+        List<CategoryDto> categoryDtos = titleContaining.stream().map(l -> new ModelMapper().map(titleContaining, CategoryDto.class)).collect(Collectors.toList());
+
+        return categoryDtos;
     }
 }
