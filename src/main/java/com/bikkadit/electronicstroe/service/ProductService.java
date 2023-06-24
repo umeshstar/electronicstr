@@ -1,6 +1,7 @@
 package com.bikkadit.electronicstroe.service;
 
 import com.bikkadit.electronicstroe.dtos.ProductDto;
+import com.bikkadit.electronicstroe.helper.PageableResponse;
 
 import java.util.List;
 
@@ -18,11 +19,12 @@ public interface ProductService {
     ProductDto get(String productId);
 
     //getAll
-   List<ProductDto> getAll();
+
+    PageableResponse<ProductDto> getAll(int pageNumber, int pageSize, String sortBy, String sortDir);
 
     //getAll-LIVE
-    List<ProductDto> getAllLive();
+    PageableResponse<ProductDto> getAllLive(int pageNumber, int pageSize, String sortBy, String sortDir);
 
     //search
-    List< ProductDto> searchByTitle(String subTitle);
+    PageableResponse<ProductDto> searchByTitle(String subTitle,int pageNumber, int pageSize, String sortBy, String sortDir);
 }

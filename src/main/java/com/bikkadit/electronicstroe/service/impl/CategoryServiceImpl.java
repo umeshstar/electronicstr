@@ -96,11 +96,16 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryDto> searchCategory(String keyword) {
+    public PageableResponse<CategoryDto> searchCategory(String keyword,int pageNumber, int pageSize,String sortBy, String sortDir) {
         log.info("Category CategoryImpl -searchCategory method is Start");
-        List<Category> titleContaining = categoryRepository.findBycategoryTitleContaining(keyword);
-        List<CategoryDto> categoryDtos = titleContaining.stream().map(l -> new ModelMapper().map(titleContaining, CategoryDto.class)).collect(Collectors.toList());
-        log.info("Category CategoryImpl -searchCategory method is End");
-        return categoryDtos;
+
+        Sort sort=(sortDir.equalsIgnoreCase("desc"))?(Sort.by(sortBy).descending()):(Sort.by(sortBy).ascending());
+
+        Pageable pageable= PageRequest.of(pageNumber,pageSize,sort);
+        Page<Category> bycategoryTitleContaining = categoryRepository.findBycategoryTitleContaining(keyword, pageable);
+
+        PageableResponse<CategoryDto> pageableResponse = PHelper.getPageableResponse(bycategoryTitleContaining, CategoryDto.class);
+        log.info("Category CategoryImpl -getAll method is End");
+        return pageableResponse;
     }
 }

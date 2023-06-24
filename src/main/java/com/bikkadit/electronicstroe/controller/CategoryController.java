@@ -1,6 +1,7 @@
 package com.bikkadit.electronicstroe.controller;
 
 import com.bikkadit.electronicstroe.dtos.CategoryDto;
+import com.bikkadit.electronicstroe.dtos.ProductDto;
 import com.bikkadit.electronicstroe.helper.ApiResponse;
 import com.bikkadit.electronicstroe.helper.AppConstant;
 import com.bikkadit.electronicstroe.helper.PageableResponse;
@@ -83,12 +84,16 @@ public class CategoryController {
 
     }
 
-    @GetMapping("/{keyword}")
-    public ResponseEntity<List<CategoryDto>>searchCategory(@PathVariable String keyword){
-        log.info("Category Controller -searchCategory method is Start");
-        List<CategoryDto> categoryDtos = categoryService.searchCategory(keyword);
-        log.info("Category Controller -searchCategory method is End");
-        return new ResponseEntity<List<CategoryDto>>(categoryDtos,HttpStatus.OK);
+    @GetMapping("/search/{query}")
+    public ResponseEntity<PageableResponse<CategoryDto>> searchProduct(
+            @PathVariable String query,
+            @RequestParam(value = "pageNumber", defaultValue = AppConstant.PAGE_NUMBER, required = false) Integer pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = AppConstant.PAGE_SIZE, required = false) Integer pageSize,
+            @RequestParam(value = "sortBy", defaultValue = "categoryTitle", required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = AppConstant.SORT_DIR, required = false) String sortDir
+    ){
 
+        PageableResponse<CategoryDto> response = categoryService.searchCategory(query, pageNumber, pageSize, sortBy, sortDir);
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 }

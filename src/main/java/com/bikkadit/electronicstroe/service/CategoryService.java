@@ -22,5 +22,5 @@ public interface CategoryService {
     void delete(String categoryId);
 
     //Search
-    List<CategoryDto> searchCategory(String keyword);
+    PageableResponse<CategoryDto>  searchCategory(String keyword,int pageNumber, int pageSize,String sortBy, String sortDir);
 }
