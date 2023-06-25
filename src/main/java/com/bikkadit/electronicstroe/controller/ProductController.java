@@ -1,8 +1,6 @@
 package com.bikkadit.electronicstroe.controller;
 
-import com.bikkadit.electronicstroe.dtos.CategoryDto;
 import com.bikkadit.electronicstroe.dtos.ProductDto;
-import com.bikkadit.electronicstroe.dtos.UserDto;
 import com.bikkadit.electronicstroe.helper.ApiResponse;
 import com.bikkadit.electronicstroe.helper.AppConstant;
 import com.bikkadit.electronicstroe.helper.ImageResponse;
