@@ -144,7 +144,7 @@ public class ProductController {
     public void serveProductImage(@PathVariable String productId, HttpServletResponse response) throws IOException {
 
         ProductDto productDto = productService.get(productId);
-        log.info("User image name:{}",productDto.getProductImageName());
+        log.info("product image name:{}",productDto.getProductImageName());
         InputStream resource = fileServices.getResource(imagePath, productDto.getProductImageName());
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
         StreamUtils.copy(resource,response.getOutputStream());
