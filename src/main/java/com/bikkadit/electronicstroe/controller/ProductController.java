@@ -4,13 +4,19 @@ import com.bikkadit.electronicstroe.dtos.CategoryDto;
 import com.bikkadit.electronicstroe.dtos.ProductDto;
 import com.bikkadit.electronicstroe.helper.ApiResponse;
 import com.bikkadit.electronicstroe.helper.AppConstant;
+import com.bikkadit.electronicstroe.helper.ImageResponse;
 import com.bikkadit.electronicstroe.helper.PageableResponse;
+import com.bikkadit.electronicstroe.service.FileServices;
 import com.bikkadit.electronicstroe.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Slf4j
 @RestController
@@ -18,6 +24,14 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private FileServices fileServices;
+
+    @Value("${product.image.path}")
+    private String imagePath;
+
+
     //create
     @PostMapping("/create")
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){
@@ -101,4 +115,25 @@ public class ProductController {
         return new ResponseEntity<>(pageableResponse,HttpStatus.OK);
     }
 
+    //uploadimage
+    @PostMapping("/image/{productId}")
+    public ResponseEntity<ImageResponse> uploadProductImage(
+            @PathVariable String productId,
+            @RequestParam("productImage")MultipartFile image
+            ) throws IOException {
+        String fileName = fileServices.uploadFile(image, imagePath);
+        ProductDto productDto = productService.get(productId);
+        productDto.setProductImageName(fileName);
+        ProductDto updatedIMgName = productService.update(productDto, productId);
+
+        ImageResponse productImageIsSuccessfullyUpload = ImageResponse.builder()
+                .imageName(updatedIMgName.getProductImageName())
+                .message("Product image is successfully upload")
+                .status(HttpStatus.CREATED)
+                .success(true)
+                .build();
+        return new ResponseEntity<>(productImageIsSuccessfullyUpload,HttpStatus.CREATED);
+
+    }
+    //serve image
 }
