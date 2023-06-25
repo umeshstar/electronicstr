@@ -10,12 +10,18 @@ import com.bikkadit.electronicstroe.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -30,6 +36,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private ModelMapper modelMapper; //it is used to convert dto to entity and ...entity to dto
+
+    @Value("${category.image.path}")
+    private String imagePath;
 
     @Override
     public CategoryDto create(CategoryDto categoryDto) {
@@ -91,6 +100,18 @@ public class CategoryServiceImpl implements CategoryService {
     public void delete(String categoryId) {
         log.info("Category CategoryImpl -delete method is Start");
         Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("category not found exception"));
+        //delete user image
+        //  image/user/a
+        String fullPath = imagePath + category.getCategoryImage();
+        try{
+            Path path1 = Paths.get(fullPath);
+            Files.delete(path1);
+        } catch (NoSuchFileException ex){
+
+        }catch (IOException e){
+            throw new RuntimeException(e);      }
+
+
         log.info("Category CategoryImpl -delete method is End");
         categoryRepository.delete(category);
     }

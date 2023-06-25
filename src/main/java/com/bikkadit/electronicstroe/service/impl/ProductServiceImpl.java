@@ -1,8 +1,6 @@
 package com.bikkadit.electronicstroe.service.impl;
 
-import com.bikkadit.electronicstroe.dtos.CategoryDto;
 import com.bikkadit.electronicstroe.dtos.ProductDto;
-import com.bikkadit.electronicstroe.entities.Category;
 import com.bikkadit.electronicstroe.entities.Product;
 import com.bikkadit.electronicstroe.exception.ResourceNotFoundException;
 import com.bikkadit.electronicstroe.helper.PHelper;
@@ -11,12 +9,18 @@ import com.bikkadit.electronicstroe.repositories.ProductRepository;
 import com.bikkadit.electronicstroe.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.UUID;
 
@@ -27,6 +31,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Value("${product.image.path}")
+    private String imagePath;
 
     @Override
     public ProductDto create(ProductDto productDto) {
@@ -60,6 +67,18 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void delete(String productId) {
         Product product = productRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Product not found with this id"));
+        //delete user image
+        //  image/user/a
+        String fullPath = imagePath + product.getProductImageName();
+        try{
+            Path path1 = Paths.get(fullPath);
+            Files.delete(path1);
+        } catch (NoSuchFileException ex){
+
+        }catch (IOException e){
+            throw new RuntimeException(e);
+        }
+
         productRepository.delete(product);
 
     }
