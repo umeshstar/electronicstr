@@ -31,7 +31,6 @@ public class UserDto {
     @Pattern(regexp = "^[a-z0-9]{5}",message = "invalid password please fill min-5 char with number and alphabet")
     private String password;
 
-
     @NotBlank
     @Size(min = 4,max = 6,message = "invalid gender!!!")
     private String gender;

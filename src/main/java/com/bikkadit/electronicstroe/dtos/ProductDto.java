@@ -1,5 +1,6 @@
 package com.bikkadit.electronicstroe.dtos;
 
+import com.bikkadit.electronicstroe.entities.CustomeFields;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class ProductDto {
+public class ProductDto extends CustomeFields {
 
     private String productId;
 
