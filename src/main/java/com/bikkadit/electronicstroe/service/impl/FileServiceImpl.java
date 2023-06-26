@@ -48,12 +48,12 @@ public class FileServiceImpl implements FileServices {
     }
 
     @Override
-    public InputStream getResource(String path, String name) throws FileNotFoundException {
+    public InputStream getResource(String path, String name) throws FileNotFoundException
+    {
+        log.info("file impl- getResource method is start");
         String fullPath= path+File.separator+name;
-
         InputStream inputStream= new FileInputStream(fullPath);
-
-
+        log.info("file impl- getResource method is end");
         return inputStream;
     }
 }

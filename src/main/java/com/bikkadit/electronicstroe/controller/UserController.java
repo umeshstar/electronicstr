@@ -110,7 +110,7 @@ public class UserController {
     }
     @GetMapping("/{keyword}")
     public ResponseEntity<List<UserDto>> searchUser(@PathVariable String keyword) {
-        log.info("This is request for search user by keyword request start");
+        log.info("user controller-This is request for search user by keyword request start");
         List<UserDto> srUser = this.userService.searchUser(keyword);
         log.info("This is request for search user by keyword request start");
         return new ResponseEntity<>(srUser,HttpStatus.OK);
@@ -123,7 +123,9 @@ public class UserController {
     @PostMapping("/image/{userId}")
     public ResponseEntity<ImageResponse>uploadImage(
             @RequestParam("userImage")MultipartFile image,
-            @PathVariable String userId            ) throws IOException {
+            @PathVariable String userId            )
+            throws IOException {
+
         log.info("This is request for uploadimage  request start");
         String imageName = fileServices.uploadFile(image, imageUploadPath);
         UserDto user = userService.getUserById(userId);
@@ -143,11 +145,12 @@ public class UserController {
     //serve user image
     @GetMapping("/image/{userId}")
     public void serveUserImage(@PathVariable String userId, HttpServletResponse response) throws IOException {
-
+        log.info("This is request for serveUserImage  request end");
         UserDto user = userService.getUserById(userId);
         log.info("User image name:{}",user.getImageName());
         InputStream resource = fileServices.getResource(imageUploadPath, user.getImageName());
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+        log.info("This is request for serveUserImage  request end");
         StreamUtils.copy(resource,response.getOutputStream());
     }
 

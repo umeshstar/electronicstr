@@ -9,6 +9,7 @@ import com.bikkadit.electronicstroe.helper.PageableResponse;
 import com.bikkadit.electronicstroe.repositories.CategoryRepository;
 import com.bikkadit.electronicstroe.repositories.ProductRepository;
 import com.bikkadit.electronicstroe.service.ProductService;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.id.uuid.Helper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
+@Slf4j
 @Service
 
 public class ProductServiceImpl implements ProductService {
@@ -44,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto create(ProductDto productDto) {
-
+        log.info(" ProductImpl -create method is Start");
         Product product = modelMapper.map(productDto, Product.class);
         //product id
         String productId = UUID.randomUUID().toString();
@@ -52,11 +54,13 @@ public class ProductServiceImpl implements ProductService {
         //added date
         product.setAddedDate(new Date());
         Product savedProduct = productRepository.save(product);
+        log.info(" ProductImpl -create method is end");
         return modelMapper.map(savedProduct,ProductDto.class);
     }
 
     @Override
     public ProductDto update(ProductDto productDto, String productId) {
+        log.info(" ProductImpl -update method is start");
         Product product = productRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Product Not Foun this id"));
         product.setTitle(productDto.getTitle());
         product.setDescription(productDto.getDescription());
@@ -67,12 +71,14 @@ public class ProductServiceImpl implements ProductService {
         product.setStock(productDto.isStock());
         product.setProductImageName(productDto.getProductImageName());
         Product updatedProduct = productRepository.save(product);
+        log.info(" ProductImpl -update method is end");
         return modelMapper.map(updatedProduct,ProductDto.class);
 
     }
 
     @Override
     public void delete(String productId) {
+        log.info(" ProductImpl -delete method is start");
         Product product = productRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Product not found with this id"));
         //delete user image
         //  image/user/a
@@ -85,15 +91,16 @@ public class ProductServiceImpl implements ProductService {
         }catch (IOException e){
             throw new RuntimeException(e);
         }
-
+        log.info(" ProductImpl -delete method is end");
         productRepository.delete(product);
 
     }
 
     @Override
     public ProductDto get(String productId) {
+        log.info(" ProductImpl -get method is start");
         Product product1 = productRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Product not found with this id"));
-
+        log.info(" ProductImpl -get method is end");
         return modelMapper.map(product1,ProductDto.class);
     }
 
@@ -101,14 +108,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public PageableResponse<ProductDto> getAll(int pageNumber, int pageSize,String sortBy, String sortDir) {
-
+        log.info(" ProductImpl -getAll method is start");
         Sort sort=(sortDir.equalsIgnoreCase("desc"))?(Sort.by(sortBy).descending()):(Sort.by(sortBy).ascending());
 
         Pageable pageable= PageRequest.of(pageNumber,pageSize,sort);
         Page<Product> products = productRepository.findAll(pageable);
 
         PageableResponse<ProductDto> pageableResponse = PHelper.getPageableResponse(products, ProductDto.class);
-
+        log.info(" ProductImpl -getAll method is end");
         return pageableResponse;
 
     }
@@ -119,13 +126,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public PageableResponse<ProductDto> getAllLive(int pageNumber, int pageSize, String sortBy, String sortDir)
     {
+        log.info(" ProductImpl -getAllLive method is start");
         Sort sort=(sortDir.equalsIgnoreCase("desc"))?(Sort.by(sortBy).descending()):(Sort.by(sortBy).ascending());
 
         Pageable pageable= PageRequest.of(pageNumber,pageSize,sort);
         Page<Product> products = productRepository.findByLiveTrue(pageable);
 
         PageableResponse<ProductDto> pageableResponse = PHelper.getPageableResponse(products, ProductDto.class);
-
+        log.info(" ProductImpl -getAllLive method is end");
         return pageableResponse;
 
 
@@ -134,12 +142,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public PageableResponse<ProductDto> searchByTitle(String subTitle,int pageNumber, int pageSize, String sortBy, String sortDir)
     {
+        log.info(" ProductImpl -searchByTitle method is start");
+
         Sort sort=(sortDir.equalsIgnoreCase("desc"))?(Sort.by(sortBy).descending()):(Sort.by(sortBy).ascending());
 
         Pageable pageable= PageRequest.of(pageNumber,pageSize,sort);
         Page<Product> products = productRepository.findByTitleContaining(subTitle,pageable);
 
         PageableResponse<ProductDto> pageableResponse = PHelper.getPageableResponse(products, ProductDto.class);
+        log.info(" ProductImpl -searchByTitle method is end");
 
         return pageableResponse;
 
@@ -149,7 +160,9 @@ public class ProductServiceImpl implements ProductService {
 //and this impl api is not created in product controller ... this is created in category controller.
     @Override
     public ProductDto createWithCategory(ProductDto productDto, String categoryId) {
+
         //fetch the category form category dto ... for that requird autowire categoryRepository
+        log.info(" ProductImpl -createWithCategory method is start");
         Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("Category Not found with this Cat.Id"));
 
         Product product = modelMapper.map(productDto, Product.class);
@@ -160,6 +173,7 @@ public class ProductServiceImpl implements ProductService {
         product.setAddedDate(new Date());
         product.setCategory(category);
         Product savedProduct = productRepository.save(product);
+        log.info(" ProductImpl -searchByTitle method is end");
         return modelMapper.map(savedProduct,ProductDto.class);
 
     }
@@ -167,25 +181,27 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDto updateCategory(String productId, String categoryId) {
         //productFetch
-
+        log.info(" ProductImpl -updateCategory method is start");
         Product product = productRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException("prodcut not found with this ID"));
         Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("Category not found with given id"));
         product.setCategory(category);
         Product saved = productRepository.save(product);
 
-
+        log.info(" ProductImpl -updateCategory method is end");
         return modelMapper.map(saved,ProductDto.class);
     }
 
     @Override
-    public PageableResponse<ProductDto> getAllCategory(String categoryId,int pageNumber, int pageSize, String sortBy, String sortDir) {
+    public PageableResponse<ProductDto> getAllCategory(String categoryId,int pageNumber, int pageSize, String sortBy, String sortDir)
+    {
+        log.info(" ProductImpl -getAllCategory method is start");
         Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("Category not found with given id"));
 
         Sort sort=(sortDir.equalsIgnoreCase("desc"))?(Sort.by(sortBy).descending()):(Sort.by(sortBy).ascending());
 
         Pageable pageable= PageRequest.of(pageNumber, pageSize, sort);
         Page<Product> byCategory = productRepository.findByCategory(category,pageable);
-
+        log.info(" ProductImpl -getAllCategory method is end");
         return PHelper.getPageableResponse(byCategory,ProductDto.class);
 
 
