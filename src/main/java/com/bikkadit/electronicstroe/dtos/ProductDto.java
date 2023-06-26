@@ -21,9 +21,7 @@ public class ProductDto extends CustomeFields {
 
     private String productId;
 
-
     private String title;
-
 
     private String description;
 
@@ -33,12 +31,11 @@ public class ProductDto extends CustomeFields {
 
     private Integer quantity;
 
-    private Date addedDate;
-
     private boolean live;
 
     private boolean stock;
 
     private String productImageName;
+
     private CategoryDto category;
 }

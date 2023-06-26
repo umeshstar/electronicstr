@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Builder
 @Table(name="category")
-public class Category extends CustomeFields {
+public class Category {
 
     @Id
     @Column(name="id")

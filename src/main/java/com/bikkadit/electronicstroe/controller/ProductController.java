@@ -49,9 +49,9 @@ public class ProductController {
     @PutMapping ("/{productId}")
     public ResponseEntity<ProductDto> updateProduct(@PathVariable String productId,@RequestBody ProductDto productDto)
     {
-        log.info("Product Controller -updateProduct method is start");
+        log.info("Product Controller -updateProduct method is start",productId);
         ProductDto updated = productService.update(productDto, productId);
-        log.info("Product Controller -updateProduct method is end");
+        log.info("Product Controller -updateProduct method is end",productId);
         return new ResponseEntity<>(updated, HttpStatus.OK);
 
     }
@@ -60,14 +60,14 @@ public class ProductController {
     @DeleteMapping("/{productId}")
     public ResponseEntity<ApiResponse>deleteCategory(@PathVariable String productId){
 
-        log.info("Product Controller -deleteproduct method is Start");
+        log.info("Product Controller -deleteproduct method is Start",productId);
         productService.delete(productId);
         ApiResponse response = ApiResponse.builder()
                 .message("Product is Deleted Succesfully!!")
                 .success(true)
                 .status(HttpStatus.OK)
                 .build();
-        log.info("Product Controller -dleteproduct method is End");
+        log.info("Product Controller -dleteproduct method is End",productId);
         return new ResponseEntity<>(response,HttpStatus.OK);
 
 
@@ -76,9 +76,9 @@ public class ProductController {
     //getSingle
     @GetMapping("/getSingle/{productId}")
     public ResponseEntity<ProductDto> getSingle(@PathVariable String productId){
-        log.info("product Controller -getSingle method is Start");
+        log.info("product Controller -getSingle method is Start",productId);
         ProductDto productDto = productService.get(productId);
-        log.info("product Controller -getSingle method is End");
+        log.info("product Controller -getSingle method is End",productId);
         return new ResponseEntity<>(productDto,HttpStatus.OK);
     }
     //getAll
@@ -131,7 +131,7 @@ public class ProductController {
             @RequestParam("productImage")MultipartFile image
             )
             throws IOException {
-        log.info("product Controller -uploadProductImage method is start");
+        log.info("product Controller -uploadProductImage method is start",productId);
         String fileName = fileServices.uploadFile(image, imagePath);
         ProductDto productDto = productService.get(productId);
         productDto.setProductImageName(fileName);
@@ -144,7 +144,7 @@ public class ProductController {
                 .success(true)
                 .build();
 
-        log.info("product Controller -uploadProductImage method is end");
+        log.info("product Controller -uploadProductImage method is end",productId);
         return new ResponseEntity<>(productImageIsSuccessfullyUpload,HttpStatus.CREATED);
 
     }
@@ -152,12 +152,12 @@ public class ProductController {
 
     @GetMapping("/image/{productId}")
     public void serveProductImage(@PathVariable String productId, HttpServletResponse response) throws IOException {
-        log.info("product Controller -serveProductImage method is start");
+        log.info("product Controller -serveProductImage method is start",productId);
         ProductDto productDto = productService.get(productId);
         log.info("product image name:{}",productDto.getProductImageName());
         InputStream resource = fileServices.getResource(imagePath, productDto.getProductImageName());
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-        log.info("product Controller -serveProductImage method is start");
+        log.info("product Controller -serveProductImage method is start",productId);
         StreamUtils.copy(resource,response.getOutputStream());
     }
 

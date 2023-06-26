@@ -25,6 +25,7 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
@@ -52,7 +53,8 @@ public class ProductServiceImpl implements ProductService {
         String productId = UUID.randomUUID().toString();
         product.setProductId(productId);
         //added date
-        product.setAddedDate(new Date());
+        product.setCreateOn(new Date());
+
         Product savedProduct = productRepository.save(product);
         log.info(" ProductImpl -create method is end");
         return modelMapper.map(savedProduct,ProductDto.class);
@@ -170,7 +172,7 @@ public class ProductServiceImpl implements ProductService {
         String productId = UUID.randomUUID().toString();
         product.setProductId(productId);
         //added date
-        product.setAddedDate(new Date());
+        product.setCreateOn(new Date());
         product.setCategory(category);
         Product savedProduct = productRepository.save(product);
         log.info(" ProductImpl -searchByTitle method is end");

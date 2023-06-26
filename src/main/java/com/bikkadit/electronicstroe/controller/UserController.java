@@ -54,23 +54,23 @@ public class UserController {
     //update
     @PutMapping("/{userId}")
     public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto,@PathVariable String userId){
-        log.info("This is method for update user request start" );
+        log.info("This is method for update user request start",userId );
         UserDto updatedUser = this.userService.updateUser(userDto, userId);
-        log.info("This is method for update user request complete");
+        log.info("This is method for update user request complete",userId);
         return  ResponseEntity.ok(updatedUser);
     }
     //delete
     @DeleteMapping("/{userId}")
     public ResponseEntity<ApiResponse> deleteUser(@PathVariable String userId)
     {
-        log.info("This is method for delete user request start");
+        log.info("This is method for delete user request start",userId);
         userService.deleteUser(userId);
         ApiResponse api= ApiResponse
                 .builder()
                 .message(AppConstant.DELETED)
                 .success(true)
                 .build();
-        log.info("This is method for delete user request complete");
+        log.info("This is method for delete user request complete",userId);
         return new ResponseEntity<>(api,HttpStatus.OK);
     }
     //getall
@@ -94,9 +94,9 @@ public class UserController {
     //single get
     @GetMapping("/{userId}")
     public ResponseEntity<UserDto> getSingleUsers(@PathVariable String userId){
-        log.info("This is request for getsingle user by id request start");
+        log.info("This is request for getsingle user by id request start",userId);
         UserDto userbyId = this.userService.getUserById(userId);
-        log.info("This is request for getsingle user by id request end");
+        log.info("This is request for getsingle user by id request end",userId);
         return new ResponseEntity<>(userbyId,HttpStatus.OK);
 
     }
@@ -145,12 +145,12 @@ public class UserController {
     //serve user image
     @GetMapping("/image/{userId}")
     public void serveUserImage(@PathVariable String userId, HttpServletResponse response) throws IOException {
-        log.info("This is request for serveUserImage  request end");
+        log.info("This is request for serveUserImage  request end", userId);
         UserDto user = userService.getUserById(userId);
         log.info("User image name:{}",user.getImageName());
         InputStream resource = fileServices.getResource(imageUploadPath, user.getImageName());
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-        log.info("This is request for serveUserImage  request end");
+        log.info("This is request for serveUserImage  request end",userId);
         StreamUtils.copy(resource,response.getOutputStream());
     }
 

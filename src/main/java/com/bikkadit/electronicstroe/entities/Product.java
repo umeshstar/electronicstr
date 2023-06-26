@@ -33,10 +33,6 @@ public class Product extends CustomeFields{
 
     private Integer quantity;
 
-    private Date addedDate;
-
-    private boolean live;
-
     private boolean stock;
 
     private String productImageName;
