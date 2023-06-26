@@ -38,18 +38,20 @@ public class ProductController {
     //create
     @PostMapping("/create")
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){
-
+        log.info("Product Controller -createProduct method is start");
         ProductDto productDto1 = productService.create(productDto);
+        log.info("Product Controller -createProduct method is end");
 
         return new ResponseEntity<>(productDto, HttpStatus.CREATED);
 
     }
     //update
     @PutMapping ("/{productId}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable String productId,@RequestBody ProductDto productDto){
-
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable String productId,@RequestBody ProductDto productDto)
+    {
+        log.info("Product Controller -updateProduct method is start");
         ProductDto updated = productService.update(productDto, productId);
-
+        log.info("Product Controller -updateProduct method is end");
         return new ResponseEntity<>(updated, HttpStatus.OK);
 
     }
@@ -57,6 +59,7 @@ public class ProductController {
     //delete
     @DeleteMapping("/{productId}")
     public ResponseEntity<ApiResponse>deleteCategory(@PathVariable String productId){
+
         log.info("Product Controller -deleteproduct method is Start");
         productService.delete(productId);
         ApiResponse response = ApiResponse.builder()
@@ -86,8 +89,9 @@ public class ProductController {
             @RequestParam(value = "sortBy", defaultValue = "title", required = false) String sortBy,
             @RequestParam(value = "sortDir", defaultValue = AppConstant.SORT_DIR, required = false) String sortDir
     ){
-
+        log.info("product Controller -getallproduct method is start");
         PageableResponse<ProductDto> pageableResponse = productService.getAll(pageNumber, pageSize, sortBy, sortDir);
+        log.info("product Controller -getallproduct method is End");
         return new ResponseEntity<>(pageableResponse,HttpStatus.OK);
     }
 
@@ -99,8 +103,9 @@ public class ProductController {
             @RequestParam(value = "sortBy", defaultValue = "title", required = false) String sortBy,
             @RequestParam(value = "sortDir", defaultValue = AppConstant.SORT_DIR, required = false) String sortDir
     ){
-
+        log.info("product Controller -getAllLive method is start");
         PageableResponse<ProductDto> pageableResponse = productService.getAllLive(pageNumber, pageSize, sortBy, sortDir);
+        log.info("product Controller -getAllLive method is End");
         return new ResponseEntity<>(pageableResponse,HttpStatus.OK);
     }
 
@@ -113,8 +118,9 @@ public class ProductController {
             @RequestParam(value = "sortBy", defaultValue = "title", required = false) String sortBy,
             @RequestParam(value = "sortDir", defaultValue = AppConstant.SORT_DIR, required = false) String sortDir
     ){
-
+        log.info("product Controller -searchProduct method is start");
         PageableResponse<ProductDto> pageableResponse = productService.searchByTitle(query,pageNumber, pageSize, sortBy, sortDir);
+        log.info("product Controller -searchProduct method is End");
         return new ResponseEntity<>(pageableResponse,HttpStatus.OK);
     }
 
@@ -123,7 +129,9 @@ public class ProductController {
     public ResponseEntity<ImageResponse> uploadProductImage(
             @PathVariable String productId,
             @RequestParam("productImage")MultipartFile image
-            ) throws IOException {
+            )
+            throws IOException {
+        log.info("product Controller -uploadProductImage method is start");
         String fileName = fileServices.uploadFile(image, imagePath);
         ProductDto productDto = productService.get(productId);
         productDto.setProductImageName(fileName);
@@ -135,6 +143,8 @@ public class ProductController {
                 .status(HttpStatus.CREATED)
                 .success(true)
                 .build();
+
+        log.info("product Controller -uploadProductImage method is end");
         return new ResponseEntity<>(productImageIsSuccessfullyUpload,HttpStatus.CREATED);
 
     }
@@ -142,11 +152,12 @@ public class ProductController {
 
     @GetMapping("/image/{productId}")
     public void serveProductImage(@PathVariable String productId, HttpServletResponse response) throws IOException {
-
+        log.info("product Controller -serveProductImage method is start");
         ProductDto productDto = productService.get(productId);
         log.info("product image name:{}",productDto.getProductImageName());
         InputStream resource = fileServices.getResource(imagePath, productDto.getProductImageName());
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+        log.info("product Controller -serveProductImage method is start");
         StreamUtils.copy(resource,response.getOutputStream());
     }
 
