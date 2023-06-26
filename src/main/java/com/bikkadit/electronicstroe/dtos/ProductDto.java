@@ -1,5 +1,6 @@
 package com.bikkadit.electronicstroe.dtos;
 
+import com.bikkadit.electronicstroe.entities.Category;
 import com.bikkadit.electronicstroe.entities.CustomeFields;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,4 +40,5 @@ public class ProductDto extends CustomeFields {
     private boolean stock;
 
     private String productImageName;
+    private CategoryDto category;
 }

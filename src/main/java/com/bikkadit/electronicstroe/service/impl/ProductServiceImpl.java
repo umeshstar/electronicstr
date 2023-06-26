@@ -1,12 +1,15 @@
 package com.bikkadit.electronicstroe.service.impl;
 
 import com.bikkadit.electronicstroe.dtos.ProductDto;
+import com.bikkadit.electronicstroe.entities.Category;
 import com.bikkadit.electronicstroe.entities.Product;
 import com.bikkadit.electronicstroe.exception.ResourceNotFoundException;
 import com.bikkadit.electronicstroe.helper.PHelper;
 import com.bikkadit.electronicstroe.helper.PageableResponse;
+import com.bikkadit.electronicstroe.repositories.CategoryRepository;
 import com.bikkadit.electronicstroe.repositories.ProductRepository;
 import com.bikkadit.electronicstroe.service.ProductService;
+import org.hibernate.id.uuid.Helper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,13 +25,17 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
+
 public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -135,6 +142,52 @@ public class ProductServiceImpl implements ProductService {
         PageableResponse<ProductDto> pageableResponse = PHelper.getPageableResponse(products, ProductDto.class);
 
         return pageableResponse;
+
+    }
+//product create with category Id...
+//bcz of this api easy to save product with category
+//and this impl api is not created in product controller ... this is created in category controller.
+    @Override
+    public ProductDto createWithCategory(ProductDto productDto, String categoryId) {
+        //fetch the category form category dto ... for that requird autowire categoryRepository
+        Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("Category Not found with this Cat.Id"));
+
+        Product product = modelMapper.map(productDto, Product.class);
+        //product id
+        String productId = UUID.randomUUID().toString();
+        product.setProductId(productId);
+        //added date
+        product.setAddedDate(new Date());
+        product.setCategory(category);
+        Product savedProduct = productRepository.save(product);
+        return modelMapper.map(savedProduct,ProductDto.class);
+
+    }
+
+    @Override
+    public ProductDto updateCategory(String productId, String categoryId) {
+        //productFetch
+
+        Product product = productRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException("prodcut not found with this ID"));
+        Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("Category not found with given id"));
+        product.setCategory(category);
+        Product saved = productRepository.save(product);
+
+
+        return modelMapper.map(saved,ProductDto.class);
+    }
+
+    @Override
+    public PageableResponse<ProductDto> getAllCategory(String categoryId,int pageNumber, int pageSize, String sortBy, String sortDir) {
+        Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("Category not found with given id"));
+
+        Sort sort=(sortDir.equalsIgnoreCase("desc"))?(Sort.by(sortBy).descending()):(Sort.by(sortBy).ascending());
+
+        Pageable pageable= PageRequest.of(pageNumber, pageSize, sort);
+        Page<Product> byCategory = productRepository.findByCategory(category,pageable);
+
+        return PHelper.getPageableResponse(byCategory,ProductDto.class);
+
 
     }
 }
